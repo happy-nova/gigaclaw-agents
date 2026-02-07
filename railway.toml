@@ -5,3 +5,7 @@ builder = "dockerfile"
 healthcheckPath = "/health"
 healthcheckTimeout = 30
 restartPolicyType = "always"
+
+[[mounts]]
+source = "workspaces"
+destination = "/app/workspaces"

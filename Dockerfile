@@ -6,12 +6,19 @@ RUN npm install -g openclaw
 # Create app directory
 WORKDIR /app
 
-# Copy configuration and workspaces
+# Copy configuration
 COPY openclaw.json ./
-COPY workspaces ./workspaces
+
+# Copy default workspaces to a template directory
+# (will be used to seed empty volumes)
+COPY workspaces ./workspaces-template
+
+# Create entrypoint script
+COPY entrypoint.sh ./
+RUN chmod +x entrypoint.sh
 
 # Expose gateway port
 EXPOSE 18789
 
-# Start OpenClaw gateway
-CMD ["openclaw", "gateway", "start", "--foreground"]
+# Use entrypoint to handle volume seeding
+ENTRYPOINT ["./entrypoint.sh"]
