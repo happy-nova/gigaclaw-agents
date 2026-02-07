@@ -10,5 +10,5 @@ fi
 # Ensure workspaces directory exists
 mkdir -p /app/workspaces
 
-# Start OpenClaw gateway
-exec openclaw gateway start --foreground
+# Start OpenClaw gateway (foreground mode)
+exec openclaw gateway run
